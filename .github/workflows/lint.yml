@@ -1,0 +1,10 @@
+name: Lint Checks
+run-name: Github action for linting
+on: [push]
+jobs:
+    Explore-GitHub-Action:
+        runs-on: ubuntu-latest
+        steps:
+            - run: apt install nodejs
+            - run: npm run lint
+            - run: echo "${{job.status}}" 

@@ -1,9 +1,0 @@
-name: check JS
-run-name: Testing github action
-on: [push]
-jobs:
-    Explore-GitHub-Actions:
-        runs-on: ubuntu-latest
-        steps:
-            - run: npm run dev
-            - run: echo "The job is done ${{job.status}}"

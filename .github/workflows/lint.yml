@@ -1,10 +1,26 @@
 name: Lint Checks
-run-name: Github action for linting
+run-name: GitHub Action for Linting
+
 on: [push]
+
 jobs:
-    Explore-GitHub-Action:
-        runs-on: ubuntu-latest
-        steps:
-            - run: apt install nodejs
-            - run: npm run lint
-            - run: echo "${{job.status}}" 
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18  # Adjust version as needed
+
+      - name: Install Dependencies
+        run: npm install  # Required for eslint, prettier, etc.
+
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Check Job Status
+        run: echo "${{ job.status }} - Linting completed!"

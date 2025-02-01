@@ -14,13 +14,33 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # Adjust version as needed
+          node-version: 18 # Adjust version as needed
 
       - name: Install Dependencies
-        run: npm install  # Required for eslint, prettier, etc.
+        run: npm install # Required for eslint, prettier, etc.
 
       - name: Run Linter
         run: npm run lint
 
       - name: Check Job Status
         run: echo "${{ job.status }} - Linting completed!"
+
+  build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: clone the repo
+          uses: actions/checkout@v4
+
+        - name: Step up nodejs
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18
+
+        - name: Install dependancy
+          run: npm i
+
+        - name: Build Project
+          run: npm run build
+
+        - name: Check job status
+          run: echo "${{job.status}}"
